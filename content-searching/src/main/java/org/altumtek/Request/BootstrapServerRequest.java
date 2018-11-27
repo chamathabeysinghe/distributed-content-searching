@@ -46,7 +46,9 @@ public class BootstrapServerRequest extends BaseRequest{
             int nodes = Integer.parseInt(tokens.nextToken());
             for (int i = 0; i < nodes; i++) {
                 try {
-                    InetAddress neighbourAddress = InetAddress.getByName(tokens.nextToken());
+                    String ip = tokens.nextToken();
+                    ip= ip.replace("/","");
+                    InetAddress neighbourAddress = InetAddress.getByName(ip);
                     int neighbourPort = Integer.parseInt(tokens.nextToken());
                     neighbourList.add(new RouteTable.Node(true, neighbourAddress, neighbourPort));
                 } catch (UnknownHostException e) {
